@@ -1,2 +1,0 @@
-# dz
-Repo for homework
