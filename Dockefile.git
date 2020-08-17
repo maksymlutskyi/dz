@@ -1,8 +1,0 @@
-FROM alpine
-
-RUN apk update --no-cache && apk add git
-VOLUME /data
-WORKDIR /data
-#RUN /bin/bash cd /data
-ENTRYPOINT ["git", "clone"]
-CMD ["https://github.com/maksymlutskyi/dz.git"]

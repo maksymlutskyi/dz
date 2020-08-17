@@ -1,0 +1,47 @@
+- name: repo
+  yum_repository:
+    name: nginx
+    description: nginx repo
+    baseurl: http://nginx.org/packages/centos/7/$basearch/
+    gpgcheck: no
+    enabled: yes
+  tags:
+    - install_nginx
+
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: present
+  tags:
+    - install_nginx
+
+- name: Copy conf files
+  template:
+    src=templates/nginx.conf
+    dest=/etc/nginx/nginx.conf
+  notify:
+    - reload nginx
+  tags:
+    - install_nginx
+    - copy_conf
+- name: Copy index file
+  template:
+    src=templates/index.html
+    dest=/usr/share/nginx/html/index.html  
+  notify:
+    - reload nginx
+  tags:
+    - install_nginx
+    - copy_conf
+- name: nginx start
+  systemd:
+    name: nginx
+    state: started
+  tags:
+    - install_nginx
+- name: nginx startup enabled
+  systemd:
+    name: nginx
+    enabled: yes
+  tags:
+    - install_nginx

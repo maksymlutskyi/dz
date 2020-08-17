@@ -1,0 +1,7 @@
+listen_http: 8080
+nginx_user: nginx
+user_lamer: MAX
+db_host: localhost
+redis_host: localhost
+bicket_name: localhost
+
